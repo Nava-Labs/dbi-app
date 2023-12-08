@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <main className="h-full flex flex-col justify-between items-center bg-neutral-900">
           <Header />
           {children}
+          <Footer />
         </main>
       </body>
     </html>
