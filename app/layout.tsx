@@ -16,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={raleway.className}>{children}</body>
+      <body className={raleway.className}>
+        <main className="h-full flex flex-col justify-between items-center bg-neutral-900">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
