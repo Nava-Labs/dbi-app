@@ -42,6 +42,7 @@ export default function CustomPushChat(props: any) {
 
  const [groupChats, setGroupChats] = useState<any>()
  const { data: walletClient, isError, isLoading } = useWalletClient()
+ const [signer, setSigner] = useState<PushSDK.SignerType>()
 
  useEffect(() => {
   if (walletClient) {
@@ -49,6 +50,7 @@ export default function CustomPushChat(props: any) {
  }
  async function getAccount (walletClient: WalletClient) {
    let signer = walletClientToSigner(walletClient)
+   setSigner(signer);
    const userPush = await PushAPI.initialize(signer)
    setUser(userPush)
    let groupChats = await userPush.chat.history(groupChatId);
@@ -92,8 +94,39 @@ const handleInputChange = (e: any) => {
  setMessage(e.target.value)
 }
 
+const handleCreateSpace = async () => {
+ if (user) {
+  console.log("user ", user)
+  const userInfo = await PushSDK.user.get({
+   account: "eip155:"+walletClient?.account.address
+  });
+  console.log("sadsa ", userInfo, signer);
+   // const encrypted = (await user.info()).encryptedPrivateKey
+   const pgpDecryptedPvtKey = await PushSDK.chat.decryptPGPKey({
+     encryptedPGPPrivateKey: userInfo.encryptedPrivateKey, 
+     signer
+   });
+
+   // actual api
+   const response = await PushSDK.space.create({
+     spaceName:'wasteful_indigo_warbler',
+     spaceDescription: 'boring_emerald_gamefowl',
+     listeners: [],
+     spaceImage:"space image link",
+     speakers: ['0x3829E53A15856d1846e1b52d3Bdf5839705c29e5'],
+     isPublic: true,
+     signer: signer!,
+     pgpPrivateKey: pgpDecryptedPvtKey, //decrypted private key
+     scheduleAt: new Date("2024-07-15T14:48:00.000Z"),
+     scheduleEnd: new Date("2024-07-15T15:48:00.000Z")
+   });
+   console.log("response ", response, response.spaceId);
+ }
+}
+
  return (
   <div>
+   <button onClick={handleCreateSpace}>Create space</button>
    <button onClick={handleJoinGroup}>Send</button>
       <br></br>
       <input
