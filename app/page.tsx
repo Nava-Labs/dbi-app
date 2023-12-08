@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import PushChat from "@/components/PushChat";
+import CustomPushChat from "@/components/CustomPushChat";
 
 export default function Home() {
+  const groupChatId = "ca21ff2388999fe0e254248a8a194a8ce98f79ec072c20cf74e5cd016474ca2f";
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
