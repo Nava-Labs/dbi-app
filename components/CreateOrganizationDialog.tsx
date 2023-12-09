@@ -16,6 +16,7 @@ import { DBI_CASE_FACTORY_ABI } from "@/lib/abis/dbi-case-factory.abi";
 import { useForm, useWatch } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "./Form";
 import useConfig from "@/shared/hooks/useConfig";
+import PolygonIdButton from "./PolygonIdButton";
 
 export default function CreateOrganizationDialog({ websiteContent }: any) {
   const { address, isConnected } = useAccount();
@@ -34,6 +35,7 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
       minRequired: 0,
       creator: address as `0x${string}`,
       posts: [],
+      chainId: 0,
     },
   });
   const orgName = useWatch({
@@ -64,6 +66,10 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
     control: form.control,
     name: "posts",
   });
+  const orgChainId = useWatch({
+    control: form.control,
+    name: "chainId",
+  });
 
   let organisationData = {
     name: orgName,
@@ -73,6 +79,7 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
     minRequired: orgMinRequired,
     creator: orgCreator,
     posts: orgPosts,
+    chainId: orgChainId,
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -176,6 +183,7 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
                       <div className="flex justify-between items-center space-x-1">
                         <ConnectButton />
                         <TwitterLogin />
+                        <PolygonIdButton />
                       </div>
                     </div>
 
@@ -209,6 +217,31 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
                                       required
                                       type="text"
                                       placeholder="e.g., Uniswap"
+                                      className="bg-neutral-900 border border-neutral-600 text-sm rounded-full focus:ring-neutral-300 focus:border-neutral-300 block w-full p-2.5 text-white"
+                                    />
+                                  </FormControl>
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          <div>
+                            <label
+                              id="chainId"
+                              className="block text-sm font-medium text-neutral-400"
+                            >
+                              Chain ID
+                            </label>
+                            <FormField
+                              control={form.control}
+                              name="chainId"
+                              render={({ field }) => (
+                                <FormItem className="w-full">
+                                  <FormControl>
+                                    <input
+                                      {...field}
+                                      required
+                                      type="number"
+                                      placeholder="e.g., 80001 (Polygon Mumbai)"
                                       className="bg-neutral-900 border border-neutral-600 text-sm rounded-full focus:ring-neutral-300 focus:border-neutral-300 block w-full p-2.5 text-white"
                                     />
                                   </FormControl>
