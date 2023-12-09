@@ -32,22 +32,14 @@ export default async function RequestDetails(params: any) {
  const currentEpoch = Math.floor(Date.now() / 1000);
 
  console.log("caseData", caseData);
- // const filteredWebsiteContent =
 
  // const groupChatId =
  //   "ca21ff2388999fe0e254248a8a194a8ce98f79ec072c20cf74e5cd016474ca2f"; //BRB group
  const groupChatId =
    "e9e4907d408aa0b330f1d2d9060aad3f76733ad084d13156f0b2c1c6818a2c93" //gated group
- const iframeConfig: any = {
-   roomUrl: "https://iframe.huddle01.com/123",
-   height: "600px",
-   width: "80%",
-   noBorder: false, // false by default
- };
 
  return (
    <div className="h-full mx-auto px-40 py-10">
-     {/* <HuddleIframe roomUrl="https://iframe.huddle01.com/aqu-ixeg-yoq" height={"600px"} width={"80%"}/> */}
 
      <div className="flex">
        <div className="w-full">
