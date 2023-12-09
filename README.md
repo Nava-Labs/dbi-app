@@ -24,6 +24,25 @@ The Decentralized Bureau of Investigation (**DBI**) is a community-based platfor
 * Privacy-Focused: Requires only a wallet for anonymous communication.
 * Automated Rewards: Bounties distributed via smart contracts.
 
+## Polygon id
+#### Issuer node
+We use polygon id to verify the identity of the creator of the organization or protocol. This verification process ensures that the creator has the authority to establish essential parameters, including:
+- Treasury address
+- Token address
+- Minimum token amount for DAO member to create a `Case`
+
+To optimize outcomes, the DBI Foundation has deployed a dedicated Issuer Node for issuing Verifiable Credentials (VC). The Issuer Node instances are as follows:
+- Polygon ID - Issuer 1: http://3.133.87.6:3001/
+- Polygon ID - Issuer API: http://3.133.87.6:3002/
+- Polygon ID - Issuer API(UI): http://3.133.87.6:8088/
+
+#### Verifier node
+In order to authenticate and verify the legitimacy of an organization or protocol, we have deployed a dedicated Verifier Verifiable Credential (VC) system. This verification process ensures the credibility and authenticity of the entities in question. The verifier VC is hosted at the following address:
+
+dbi-organization-verifier: https://dbi-organization-verifier.onrender.com
+
+By leveraging this verifier VC, we uphold a secure and reliable means of confirming the identity and validity of organizations and protocols associated with our system.
+
 
 ## Getting Started
 
