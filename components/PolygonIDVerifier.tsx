@@ -30,7 +30,6 @@ function PolygonIDVerifier({
   publicServerURL,
   localServerURL,
 }: any) {
-  console.log("hi inised");
   // const {isOpen, onOpen, onClose } = useDisclosure();
 
   let [isOpen, setIsOpen] = useState(false);
