@@ -53,20 +53,19 @@ export default function CustomPushChat(props: any) {
       if (walletClient.account.address){
         setIsHacker( walletClient.account.address.toLowerCase() == hackerAddr.toLowerCase() )
       }
-      let orgsAdmins: any = getOrgsAdmin(organizations);
-      setOrgsAdmins(orgsAdmins)
+      let tempOrgsAdmins: any = getOrgsAdmin(organizations);
+      setOrgsAdmins(tempOrgsAdmins)
       let signer = walletClientToSigner(walletClient);
       setSigner(signer);
       const userPush = await PushAPI.initialize(signer);
       setUser(userPush);
       let groupChats = await userPush.chat.history(groupChatId);
-      groupChats = formatGroupChats(groupChats);
+      groupChats = formatGroupChats(groupChats, tempOrgsAdmins);
       setGroupChats(groupChats);
     }
   }, [walletClient]);
-  console.log("groupChats", groupChats);
 
-  function formatGroupChats(groupChats: any) {
+  function formatGroupChats(groupChats: any, orgsAdmins:any) {
     groupChats = groupChats.reverse();
     
     for (let i = 0; i < groupChats.length; i++) {
@@ -76,8 +75,6 @@ export default function CustomPushChat(props: any) {
       groupChats[i].fromDID = truncateEthAddress(
         formatDID(groupChats[i].fromDID)
       );
-      console.log(groupChats[i].fromDID);
-
       if (orgsAdmins[chatSender]) {
         groupChats[i].fromDID =
           groupChats[i].fromDID + " - " + orgsAdmins[chatSender] + " Admin";
@@ -358,9 +355,9 @@ export default function CustomPushChat(props: any) {
     </div>
       {/* <PushSpace user={user} signer={signer} accountAddr={walletClient?.account.address!} pushSpaceId={pushSpaceId} /> */}
       {
-        isHacker? //if it is hacker show private chat
-        <PrivateChat orgsAdmins={orgsAdmins} hackerAddr={hackerAddr} organization={organizations} user={user} signer={signer} accountAddr={walletClient?.account.address!}/>
-        :<div></div>
+        // isHacker? //if it is hacker show private chat
+        <PrivateChat groupChats={groupChats} privateChatId ={"5c48b4d150d983889e0b5a55c13ab57c1762ee214eaf24cedaf7521fad6d0370"} orgsAdmins={orgsAdmins} hackerAddr={hackerAddr} organization={organizations} user={user} signer={signer} accountAddr={walletClient?.account.address!}/>
+        // :<div></div>
       }
     </>
   );
