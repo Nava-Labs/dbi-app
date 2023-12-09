@@ -43,6 +43,16 @@ dbi-organization-verifier: https://dbi-organization-verifier.onrender.com
 
 By leveraging this verifier VC, we uphold a secure and reliable means of confirming the identity and validity of organizations and protocols associated with our system.
 
+## Push Protocol
+During critical hours post-hacks are very crucial. Communication plays huge role. We implement 3 features of push protocol to connect protocol, hackers and community
+#### Public forum(NFT Gated Group Chat)
+All officer NFT holders have the privilege to communicate with each other, talking about the case. Potentialy help the protocol/organization to fight the hacker back. This feature allows for efficient tagging of organization owners, promoting clarity and comprehensive collaboration in the collective effort to combat hackers and unveil their identities.
+#### Spaces
+Empower every DAO member to host a space and express their thoughts on a case. This enhances transparency within the community, fostering collaboration and collective insights to address security incidents effectively.
+
+#### Private chat with hackers
+We provide a secure tunnel for protocols to engage in direct communication with hackers. This feature aims to facilitate clearer understanding and better outcomes in resolving incidents. Only hackers and the organization owner are able to be in the group.
+
 
 ## Getting Started
 
