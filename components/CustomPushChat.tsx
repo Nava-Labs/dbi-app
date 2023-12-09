@@ -35,7 +35,7 @@ export function useEthersSigner({ chainId }: { chainId?: number } = {}) {
 }
 
 export default function CustomPushChat(props: any) {
-  const { groupChatId, organizations, pushSpaceId, hackerAddr } = props;
+  const { groupChatId, privateChatId, organizations, pushSpaceId, hackerAddr } = props;
   const [message, setMessage] = useState("");
   const [user, setUser] = useState<PushAPI>();
   const [isHacker, setIsHacker] = useState(false);
@@ -50,6 +50,7 @@ export default function CustomPushChat(props: any) {
       getAccount(walletClient);
     }
     async function getAccount(walletClient: WalletClient) {
+      console.log("get account ")
       if (walletClient.account.address){
         setIsHacker( walletClient.account.address.toLowerCase() == hackerAddr.toLowerCase() )
       }
@@ -57,9 +58,12 @@ export default function CustomPushChat(props: any) {
       setOrgsAdmins(tempOrgsAdmins)
       let signer = walletClientToSigner(walletClient);
       setSigner(signer);
+      console.log("get signer ? ", signer);
       const userPush = await PushAPI.initialize(signer);
+      console.log("user push ", userPush)
       setUser(userPush);
       let groupChats = await userPush.chat.history(groupChatId);
+      console.log("history group chats ", groupChats)
       groupChats = formatGroupChats(groupChats, tempOrgsAdmins);
       setGroupChats(groupChats);
     }
@@ -286,7 +290,6 @@ export default function CustomPushChat(props: any) {
 
   return (
     <>
-    
     <div className="w-full h-full mt-3">
       <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
         <div className="group flex justify-between items-center rounded-t-none border-b border-neutral-600 px-4 pb-[12px] pt-3 md:rounded-t-lg">
@@ -356,7 +359,8 @@ export default function CustomPushChat(props: any) {
       {/* <PushSpace user={user} signer={signer} accountAddr={walletClient?.account.address!} pushSpaceId={pushSpaceId} /> */}
       {
         // isHacker? //if it is hacker show private chat
-        <PrivateChat groupChats={groupChats} privateChatId ={"5c48b4d150d983889e0b5a55c13ab57c1762ee214eaf24cedaf7521fad6d0370"} orgsAdmins={orgsAdmins} hackerAddr={hackerAddr} organization={organizations} user={user} signer={signer} accountAddr={walletClient?.account.address!}/>
+        // <PrivateChat privateChatId ={"5c48b4d150d983889e0b5a55c13ab57c1762ee214eaf24cedaf7521fad6d0370"} orgsAdmins={orgsAdmins} hackerAddr={hackerAddr} organizations={organizations} user={user} signer={signer} accountAddr={walletClient?.account.address!}/>
+        <PrivateChat privateChatId ={privateChatId} orgsAdmins={orgsAdmins} hackerAddr={hackerAddr} organizations={organizations} user={user} signer={signer} accountAddr={walletClient?.account.address!}/>
         // :<div></div>
       }
     </>
