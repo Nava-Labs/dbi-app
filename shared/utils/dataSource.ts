@@ -1,0 +1,45 @@
+const dataSource = {
+    // polygonMumbai
+    80001: {
+      CHAIN_NAME: "Polygon Mumbai",
+      DBI_CONTRACT: "0xe24ff4565c26Fa9223d4940ac16eA2129910C5eb",
+      DBI_OFFICER: "0x592A67b2446E322cc0ABF396a0Aee4fE06833241",
+      DBI_DEPUTY: "0xFB89d695b8007dcA98080dcbb282E1a0A6440C13",
+    },
+  
+    // arbitrumGoerli
+    421613: {
+        CHAIN_NAME: "Arbitrum Goerli",
+        DBI_CONTRACT: "0x9ED8F24C9c28Ff998FD8298a31aAf18bB4E92251",
+        DBI_OFFICER: "0x998CF182c3B96069884a791b7E182293F88d63Ee",
+        DBI_DEPUTY: "0xf6f8Eb74155Cd8c2fD3ca22d49ddDdb38143FdDa",
+    },
+
+    // scrollSepolia
+    534351: {
+        CHAIN_NAME: "Scroll Sepolia",
+        DBI_CONTRACT: "0x998CF182c3B96069884a791b7E182293F88d63Ee",
+        DBI_OFFICER: "0x31270FcDBBc8E5C52f2be025412d6f45681472C5",
+        DBI_DEPUTY: "0xDb986aAC0A231d143B47B437814FF2D93126edb1",
+    },
+
+    // baseGoerli
+    84531: {
+        CHAIN_NAME: "Base Goerli",
+        DBI_CONTRACT: "0xF0875D662228A92717F0b1e7949e59e10764eEB3",
+        DBI_OFFICER: "0x6Ba8a5E477325cd9d95C8F5F487c8BA51800684A",
+        DBI_DEPUTY: "0x2B47c78FFd5Fa97981CAcC492728E9162dD436AD",
+    },
+
+    // mantleTestnet
+    5001: {
+        CHAIN_NAME: "Mantle testnet",
+        DBI_CONTRACT: "0x998CF182c3B96069884a791b7E182293F88d63Ee",
+        DBI_OFFICER: "0x31270FcDBBc8E5C52f2be025412d6f45681472C5",
+        DBI_DEPUTY: "0xDb986aAC0A231d143B47B437814FF2D93126edb1",
+    },
+
+  } as const
+  
+  export default dataSource
+  
