@@ -10,6 +10,8 @@ import { Wallet, providers } from "ethers";
 import truncateEthAddress from "truncate-eth-address";
 import {getOrgsAdmin} from "@/shared/utils/organizations";
 import PushSpace from "./PushSpace";
+import * as PushSDK from "@pushprotocol/restapi";
+import PrivateChat from "@/components/PrivateChat";
 
 export function walletClientToSigner(walletClient: WalletClient) {
   const { account, chain, transport } = walletClient;
@@ -33,10 +35,13 @@ export function useEthersSigner({ chainId }: { chainId?: number } = {}) {
 }
 
 export default function CustomPushChat(props: any) {
-  const { groupChatId, organizations, pushSpaceId } = props;
+  const { groupChatId, organizations, pushSpaceId, hackerAddr } = props;
   const [message, setMessage] = useState("");
   const [user, setUser] = useState<PushAPI>();
+  const [isHacker, setIsHacker] = useState(false);
+  const [signer, setSigner] = useState<PushSDK.SignerType>();
   const [groupChats, setGroupChats] = useState<any>();
+  const [orgsAdmins, setOrgsAdmins] = useState<any>();
   // PushAPI.initialize(useWalletClient() );
   const { data: walletClient, isError, isLoading } = useWalletClient();
   console.log("wallet client ", walletClient);
@@ -45,7 +50,13 @@ export default function CustomPushChat(props: any) {
       getAccount(walletClient);
     }
     async function getAccount(walletClient: WalletClient) {
+      if (walletClient.account.address){
+        setIsHacker( walletClient.account.address.toLowerCase() == hackerAddr.toLowerCase() )
+      }
+      let orgsAdmins: any = getOrgsAdmin(organizations);
+      setOrgsAdmins(orgsAdmins)
       let signer = walletClientToSigner(walletClient);
+      setSigner(signer);
       const userPush = await PushAPI.initialize(signer);
       setUser(userPush);
       let groupChats = await userPush.chat.history(groupChatId);
@@ -57,7 +68,6 @@ export default function CustomPushChat(props: any) {
 
   function formatGroupChats(groupChats: any) {
     groupChats = groupChats.reverse();
-    let orgsAdmins: any = getOrgsAdmin(organizations);
     
     for (let i = 0; i < groupChats.length; i++) {
       let chatSender = formatDID(groupChats[i].fromDID).toLowerCase();
@@ -304,10 +314,6 @@ export default function CustomPushChat(props: any) {
 
         <div className="p-4 leading-5 sm:leading-6">
           <div>
-            {/* <button onClick={handleCreateGroupNFTGated}>Create new group</button> */}
-            {/* <button onClick={handleCreateSpace}>Create new space</button> */}
-            {/* <button onClick={handleJoinGroup}>Join</button>
-            <br></br> */}
             <div className="space-y-2">
               {groupChats &&
                 groupChats?.map(function (chat: any, index: any) {
@@ -350,7 +356,12 @@ export default function CustomPushChat(props: any) {
         </div>
       </div>
     </div>
-      <PushSpace pushSpaceId={pushSpaceId} />
+      {/* <PushSpace user={user} signer={signer} accountAddr={walletClient?.account.address!} pushSpaceId={pushSpaceId} /> */}
+      {
+        isHacker? //if it is hacker show private chat
+        <PrivateChat orgsAdmins={orgsAdmins} hackerAddr={hackerAddr} organization={organizations} user={user} signer={signer} accountAddr={walletClient?.account.address!}/>
+        :<div></div>
+      }
     </>
   );
 }
