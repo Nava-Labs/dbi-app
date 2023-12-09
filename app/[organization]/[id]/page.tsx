@@ -5,6 +5,7 @@ import {
 import { getWebsiteContent } from "@/shared/utils/storage/entityActions";
 import SubmitReport from "@/components/SubmitReport";
 import CustomPushChat from "@/components/CustomPushChat";
+import PushSpace from "@/components/PushSpace";
 
 export default async function RequestDetails(params: any) {
   const websiteContent = await getWebsiteContent();
@@ -164,6 +165,8 @@ export default async function RequestDetails(params: any) {
             groupChatId={caseData[0].pushPublicGroupId}
             organizations={websiteContent.organisations}
           />
+
+          <PushSpace />
         </div>
       )}
     </div>
