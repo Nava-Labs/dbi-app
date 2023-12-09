@@ -1,7 +1,7 @@
 "use client";
 
 import { signAuthMessage } from "@/shared/utils/storage/encyptionSign";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import lighthouse from "@lighthouse-web3/sdk";
 import { getSignature } from "@/shared/utils/signatures/sign";
 import {
@@ -23,7 +23,7 @@ export default function SubmitReport(params: any) {
   const [hash, setHash] = useState("");
   const [signature, setSignature] = useState("");
   const [accountNonce, setAccountNonce] = useState<bigint>();
-  const [reportedAddrs, setReportedAddrs] = useState<string>();
+  const [listOrgsReported, setListOrgsReported] = useState<any>();
 
   const { data } = useContractRead({
     address: params.bountyContract as `0x${string}`,
@@ -35,15 +35,31 @@ export default function SubmitReport(params: any) {
     },
   });
 
-  // const {  } = useContractRead({
-  //   address: params.bountyContract as `0x${string}`,
-  //   abi: BOUNTY_CONTACT_ABI,
-  //   functionName: "getAllReports",
-  //   args: [],
-  //   onSuccess(result) {
-  //     setReportedAddrs(result);
-  //   },
-  // }); //waiitng for abi
+  const data2 = useContractRead({
+    address: params.bountyContract as `0x${string}`,
+    abi: BOUNTY_CONTACT_ABI,
+    functionName: "getAllReports",
+    onSuccess(result) {
+      console.log("result ", result)
+      matchWithOrgs(result);
+      // setReportedAddrs(result);
+    },
+  }); //waiitng for abi
+
+  function matchWithOrgs(data:any){ //get all orgs that submitted
+    let orgsAdmins = getOrgsAdmin(organizations);
+    let orgs = []
+    for(let i=0;i<data.length;i++){
+      const userAddr = data[i].user.toLowerCase();
+      if (orgsAdmins[userAddr]) orgs.push(orgsAdmins[userAddr]) //if the userAddr is one of the orgs owner
+    }
+    console.log("this is the orgs", orgs)
+    setListOrgsReported(orgs);
+  }
+
+  useEffect(()=>{
+    //set something...?
+  },[listOrgsReported])
 
   // Function to upload the encrypted file
   const uploadEncryptedFile = async () => {
