@@ -1,5 +1,7 @@
 The Decentralized Bureau of Investigation (**DBI**) is a community-based platform aimed at enhancing communication during the crucial initial hours after a security breach or rug pull. It connects affected protocols, hackers, and the community for effective collaboration.
 
+Website: http://3.133.87.6:8080/
+
 ### Key Features:
 * Verified Organizations: Utilizes Polygon ID and Log in with X Authentication for authenticity. 
 * Secure Data Storage: Lighthouse Storage for encrypted data keeping. 
@@ -24,6 +26,10 @@ The Decentralized Bureau of Investigation (**DBI**) is a community-based platfor
 * Privacy-Focused: Requires only a wallet for anonymous communication.
 * Automated Rewards: Bounties distributed via smart contracts.
 
+## What we want to achieve
+![what we want to achieve](https://drive.google.com/uc?id=1XthoN1LTFMeLNUMZYA1__NfdzXh0CxW5)
+![what we want to achieve](https://drive.google.com/uc?id=1n3EthWbHg3fVdRna3Fd8V0yNF-WgIszj)
+
 ## Polygon id
 #### Issuer node
 We use polygon id to verify the identity of the creator of the organization or protocol. This verification process ensures that the creator has the authority to establish essential parameters, including:
@@ -44,7 +50,7 @@ dbi-organization-verifier: https://dbi-organization-verifier.onrender.com
 By leveraging this verifier VC, we uphold a secure and reliable means of confirming the identity and validity of organizations and protocols associated with our system.
 
 ## Push Protocol
-During critical hours post-hacks are very crucial. Communication plays huge role. We implement 3 features of push protocol to connect protocol, hackers and community
+During critical hours post-hacks are very crucial. Communication plays huge role. DBI Foundation implement 3 features of push protocol to connect protocol, hackers and community
 #### Public forum(NFT Gated Group Chat)
 All officer NFT holders have the privilege to communicate with each other, talking about the case. Potentialy help the protocol/organization to fight the hacker back. This feature allows for efficient tagging of organization owners, promoting clarity and comprehensive collaboration in the collective effort to combat hackers and unveil their identities.
 #### Spaces
