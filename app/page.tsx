@@ -45,12 +45,13 @@ export default function Home() {
     functionName: "balanceOf",
     args: [address as `0x${string}`],
     onSuccess(result) {
+      console.log("is success result ", result);
       if (result > BigInt(0)) {
         setIsOfficer(true);
       } else setIsOfficer(false);
     },
   });
-
+  console.log("eyey")
   return (
     <div className="h-full mx-auto px-40 py-10">
       {!isOfficer && <Quiz />}
