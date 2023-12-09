@@ -12,6 +12,7 @@ type Params = {
 };
 
 export default async function OrganizationPortal({ params }: Params) {
+  console.log("abc",params);
   let websiteContent = await getWebsiteContent();
   console.log("website content org.page", websiteContent)
   let filteredWebsiteContent: any = websiteContent.organisations.filter(
