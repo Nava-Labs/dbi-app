@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useState, useEffect, Fragment } from "react";
 import {
   Modal,
@@ -28,14 +30,13 @@ function PolygonIDVerifier({
   publicServerURL,
   localServerURL,
 }: any) {
-
-  console.log("hi inised")
+  console.log("hi inised");
   // const {isOpen, onOpen, onClose } = useDisclosure();
 
-  let [isOpen, setIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   const [sessionId, setSessionId] = useState("");
@@ -56,7 +57,7 @@ function PolygonIDVerifier({
     serverUrl + `/api/get-auth-qr?sessionId=${sessionId}`;
 
   const socket = io(serverUrl);
-  console.log(socket)
+  console.log(socket);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -120,8 +121,14 @@ function PolygonIDVerifier({
     <>
       <div className="inset-0 flex items-center justify-center">
         {sessionId ? (
-          <Button colorScheme="purple" onClick={() => setIsOpen(true)} margin={4}>
-            {verificationMessage === "✅ Verified proof" ? "Verified" : "Polygon ID"}
+          <Button
+            colorScheme="purple"
+            onClick={() => setIsOpen(true)}
+            margin={4}
+          >
+            {verificationMessage === "✅ Verified proof"
+              ? "Verified"
+              : "Polygon ID"}
           </Button>
         ) : (
           <Spinner />
@@ -184,26 +191,35 @@ function PolygonIDVerifier({
                         !verificationCheckComplete && (
                           <Center marginBottom={1}>
                             <div className="p-2 bg-white">
-
                               <QRCode value={JSON.stringify(qrCodeData)} />
                             </div>
                           </Center>
                         )}
 
                       {qrCodeData.body?.scope[0].query && (
-                        <p className="flex justify-center text-sm">Type: {qrCodeData.body?.scope[0].query.type}</p>
+                        <p className="flex justify-center text-sm">
+                          Type: {qrCodeData.body?.scope[0].query.type}
+                        </p>
                       )}
 
-                      {qrCodeData.body.message && <p className="flex justify-center text-sm">{qrCodeData.body.message}</p>}
+                      {qrCodeData.body.message && (
+                        <p className="flex justify-center text-sm">
+                          {qrCodeData.body.message}
+                        </p>
+                      )}
 
                       {qrCodeData.body.reason && (
-                        <p className="flex justify-center text-sm">Reason: {qrCodeData.body.reason}</p>
+                        <p className="flex justify-center text-sm">
+                          Reason: {qrCodeData.body.reason}
+                        </p>
                       )}
                     </div>
                     <div className="flex mt-2">
                       <button
                         className="text-xs font-medium px-5 py-3 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle bg-inherit"
-                        onClick={() => openInNewTab(linkDownloadPolygonIDWalletApp)}
+                        onClick={() =>
+                          openInNewTab(linkDownloadPolygonIDWalletApp)
+                        }
                       >
                         Download the Polygon ID Wallet App{" "}
                         <ExternalLinkIcon marginLeft={2} />
@@ -212,9 +228,9 @@ function PolygonIDVerifier({
                         className="text-xs font-medium px-5 py-3 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle bg-inherit"
                         onClick={() => openInNewTab(issuerOrHowToLink)}
                       >
-                        Get a {credentialType} VC <ExternalLinkIcon marginLeft={2} />
+                        Get a {credentialType} VC{" "}
+                        <ExternalLinkIcon marginLeft={2} />
                       </button>
-
                     </div>
                   </Dialog.Panel>
                 )}

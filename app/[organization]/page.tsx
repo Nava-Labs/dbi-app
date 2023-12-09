@@ -22,11 +22,11 @@ export default async function OrganizationPortal({ params }: Params) {
     <div className="w-full h-full mx-auto px-40 py-5">
       <div className="flex items-center space-x-2 my-5">
         <img
-          src={organizationData.logoUrl}
+          src={organizationData?.logoUrl}
           alt="Organization Logo"
           className="h-10 rounded-full"
         />
-        <div className="text-2xl font-semibold">{organizationData.name}</div>
+        <div className="text-2xl font-semibold">{organizationData?.name}</div>
       </div>
       <div className="flex justify-between">
         <SearchForm />
@@ -40,7 +40,7 @@ export default async function OrganizationPortal({ params }: Params) {
         </Link>
       </div>
       <div className="flex flex-col space-y-3 my-5 w-full">
-        {organizationData.posts.map((item: any) => (
+        {organizationData?.posts.map((item: any) => (
           <Link
             key={item.bountyContract}
             href={`/${params.organization}/${item.bountyContract}`}
