@@ -18,6 +18,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "./Form";
 import { useRouter } from "next/navigation";
 import useConfig from "@/shared/hooks/useConfig";
+import * as PushSDK from "@pushprotocol/restapi";
 
 export function walletClientToSigner(walletClient: WalletClient) {
   const { account, chain, transport } = walletClient;
@@ -44,6 +45,7 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
   const router = useRouter();
   const { address } = useAccount();
   const [user, setUser] = useState<PushAPI>();
+  const [signer, setSigner] = useState<PushAPIPushSDK.SignerType>();
   const { chain } = useNetwork();
   const { DBI_CONTRACT, DBI_OFFICER, DBI_DEPUTY } = useConfig(chain!);
 
@@ -54,6 +56,7 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
     }
     async function getAccount(walletClient: WalletClient) {
       let signer = walletClientToSigner(walletClient);
+      setSigner(setSigner);
       const userPush = await PushAPI.initialize(signer);
       setUser(userPush);
     }
@@ -167,6 +170,28 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
           description,
           members: [caseHackerAddr],
         });
+
+        const encrypted = (await user.info()).encryptedPrivateKey
+        const pgpDecryptedPvtKey = await PushSDK.chat.decryptPGPKey({
+          encryptedPGPPrivateKey: encrypted, 
+          signer: signer
+        });
+        
+        let addr = walletClient?.account.address!;
+        // actual api
+        const response = await PushSDK.space.create({
+          spaceName: caseTitle + " Space",
+          spaceDescription: description,
+          listeners: [],
+          spaceImage:"space image link",
+          speakers: [addr],
+          isPublic: true,
+          signer: signer!,
+          pgpPrivateKey: pgpDecryptedPvtKey, //decrypted private key
+          scheduleAt: new Date("2023-07-15T14:48:00.000Z"),
+          scheduleEnd: new Date("2024-07-15T15:48:00.000Z")
+        });
+        form.setValue("pushSpaceId", response.spaceId);
 
         await user.chat.send(createdPublicGroup.chatId, {
           type: "Text",

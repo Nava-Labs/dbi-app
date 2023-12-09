@@ -1,8 +1,10 @@
 "use state";
 
+import { useEffect, useState } from "react";
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { MicrophoneIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import * as PushSDK from "@pushprotocol/restapi";
 
 const speaker = [
   {
@@ -70,7 +72,26 @@ const listener = [
   },
 ];
 
-function PushSpace() {
+type SpaceListener = {
+  wallet: string;
+  publicKey: string;
+  isSpeaker: boolean;
+  image: string;
+}
+
+function PushSpace(props: any) {
+  const { pushSpaceId } = props
+
+  const [listeningUsers, setListeningUsers] = useState<SpaceListener[]>([]);
+  const [spaceDescription, setSpaceDescription] = useState("");
+
+  useEffect(() => {
+    
+  }, []);
+
+  const handleJoinSpace = async () => {
+
+  }
   return (
     <div className="w-full h-full mt-3">
       <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">

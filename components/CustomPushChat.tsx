@@ -8,6 +8,7 @@ import { PushAPI, CONSTANTS } from "@pushprotocol/restapi";
 import * as React from "react";
 import { Wallet, providers } from "ethers";
 import truncateEthAddress from "truncate-eth-address";
+import {getOrgsAdmin} from "@/shared/utils/organizations";
 
 export function walletClientToSigner(walletClient: WalletClient) {
   const { account, chain, transport } = walletClient;
@@ -55,11 +56,8 @@ export default function CustomPushChat(props: any) {
 
   function formatGroupChats(groupChats: any) {
     groupChats = groupChats.reverse();
-    let orgsAdmins: any = {};
-    for (let i = 0; i < organizations.length; i++) {
-      orgsAdmins[organizations[i].creator.toLowerCase()] =
-        organizations[i].name;
-    }
+    let orgsAdmins: any = getOrgsAdmin(organizations);
+    
     for (let i = 0; i < groupChats.length; i++) {
       let chatSender = formatDID(groupChats[i].fromDID).toLowerCase();
       groupChats[i].logoUrl = ""; //officer logo

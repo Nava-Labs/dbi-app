@@ -138,6 +138,7 @@ export default async function RequestDetails(params: any) {
                 </div>
               </div>
               <SubmitReport
+                organizations={websiteContent.organisations}
                 bountyContract={caseData[0].bountyContract as `0x${string}`}
               />
             </div>
@@ -166,7 +167,7 @@ export default async function RequestDetails(params: any) {
             organizations={websiteContent.organisations}
           />
 
-          <PushSpace />
+          <PushSpace pushSpaceId={caseData[0].pushSpaceId} />
         </div>
       )}
     </div>
