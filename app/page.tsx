@@ -1,5 +1,6 @@
 "use client";
 
+import SearchForm from "@/components/SearchForm";
 import { getWebsiteContent } from "@/shared/utils/storage/entityActions";
 import { useState, useEffect } from "react";
 
@@ -23,6 +24,9 @@ export default function Home() {
 
   return (
     <div className="h-full mx-auto px-40 py-10">
+      <div className="flex justify-between items-center pb-5">
+        <SearchForm />
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {websiteContent.organisations.map((item: any, index: any) => (
           <div
