@@ -9,6 +9,7 @@ export interface Organisation {
     tokenAddress: string,
     minRequired: number,
     creator: string,
+    chainId: number,
     posts: Post[]
 }
 

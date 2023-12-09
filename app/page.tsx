@@ -22,7 +22,10 @@ export default function Home() {
     let fetchWebsiteContent = async () => {
       try {
         let websiteContent = await getWebsiteContent();
-        setWebsiteContent(websiteContent);
+        let orgByChainId = websiteContent.organisations.filter(
+          (item) => item.chainId === chain?.id
+        );
+        setWebsiteContent(orgByChainId);
       } catch (error) {
         console.error("Failed to fetch website content:", error);
       }
@@ -55,7 +58,7 @@ export default function Home() {
             <CreateOrganizationDialog websiteContent={websiteContent} />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {websiteContent?.organisations.map((item: any, index: any) => (
+            {websiteContent?.map((item: any, index: any) => (
               <Link key={index} href={item.name}>
                 <div className="flex flex-col items-center justify-center h-64 w-[190px] transition-all p-2 border-[1px] rounded-xl border-neutral-600 hover:border-neutral-400 cursor-pointer text-base shadow-md shadow-neutral-700">
                   <div className="w-full p-4 leading-5 sm:leading-6">
