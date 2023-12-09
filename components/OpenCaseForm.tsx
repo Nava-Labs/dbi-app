@@ -179,19 +179,19 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
         
         let addr = walletClient?.account.address!;
         // actual api
-        const response = await PushSDK.space.create({
-          spaceName: caseTitle + " Space",
-          spaceDescription: description,
-          listeners: [],
-          spaceImage:"space image link",
-          speakers: [],
-          isPublic: true,
-          signer: signer!,
-          pgpPrivateKey: pgpDecryptedPvtKey, //decrypted private key
-          scheduleAt: new Date("2024-07-15T14:48:00.000Z"),
-          scheduleEnd: new Date("2024-07-15T15:48:00.000Z")
-        });
-        form.setValue("pushSpaceId", response.spaceId);
+        // const response = await PushSDK.space.create({
+        //   spaceName: caseTitle + " Space",
+        //   spaceDescription: description,
+        //   listeners: [],
+        //   spaceImage:"space image link",
+        //   speakers: [],
+        //   isPublic: true,
+        //   signer: signer!,
+        //   pgpPrivateKey: pgpDecryptedPvtKey, //decrypted private key
+        //   scheduleAt: new Date("2024-07-15T14:48:00.000Z"),
+        //   scheduleEnd: new Date("2024-07-15T15:48:00.000Z")
+        // });
+        form.setValue("pushSpaceId", "8f7be0068a677df166c2e5b8a9030fe8a4341807150339e588853c0049df3106");
 
         await user.chat.send(createdPublicGroup.chatId, {
           type: "Text",
