@@ -17,6 +17,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "./Form";
 import useConfig from "@/shared/hooks/useConfig";
 import PolygonIdButton from "./PolygonIdButton";
+import { parseEther } from "viem";
 
 export default function CreateOrganizationDialog({ websiteContent }: any) {
   const { address, isConnected } = useAccount();
@@ -87,16 +88,16 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
     await addNewOrgs(websiteContent, organisationData);
   };
 
-  const { config: addOrganisationConfig } = usePrepareContractWrite({
+  const { config: addOrganizationConfig } = usePrepareContractWrite({
     address: DBI_CONTRACT as `0x${string}`,
     abi: DBI_CASE_FACTORY_ABI,
-    functionName: "addOrganisation",
+    functionName: "addOrganization",
     args: [
       {
         name: orgName,
         token: orgTokenAddress as `0x${string}`,
         treasury: orgTreasuryAddress as `0x${string}`,
-        thresholdTokenAmount: BigInt(orgMinRequired),
+        thresholdTokenAmount: parseEther(orgMinRequired.toString()),
         twitterName: orgName,
       },
     ],
@@ -104,7 +105,7 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
   });
   const { write: addOrganisation, isLoading: isaddingOrganisation } =
     useContractWrite({
-      ...addOrganisationConfig,
+      ...addOrganizationConfig,
     });
 
   const fillForm = () => {
@@ -352,7 +353,7 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
                           <div className="flex space-x-2">
                             <button
                               type="button"
-                              disabled={!addOrganisation}
+                              // disabled={!addOrganisation}
                               onClick={() => addOrganisation?.()}
                               className={cn(
                                 "flex w-full justify-center items-center text-base font-medium px-5 py-2 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer",

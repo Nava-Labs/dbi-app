@@ -138,6 +138,7 @@ export default async function RequestDetails(params: any) {
                 </div>
               </div>
               <SubmitReport
+                organizations={websiteContent.organisations}
                 bountyContract={caseData[0].bountyContract as `0x${string}`}
               />
             </div>
@@ -164,9 +165,11 @@ export default async function RequestDetails(params: any) {
           <CustomPushChat
             groupChatId={caseData[0].pushPublicGroupId}
             organizations={websiteContent.organisations}
+            pushSpaceId={caseData[0].pushSpaceId}
+            privateChatId={caseData[0].pushPrivateGroupId}
+            hackerAddr={caseData[0].hackerAddr}
           />
 
-          <PushSpace />
         </div>
       )}
     </div>

@@ -25,5 +25,6 @@ export interface Post {
     hackerAddr: string,
     breadcrumbsUrl: string,
     pushPublicGroupId: string,
-    pushPrivateGroupId: string
+    pushPrivateGroupId: string,
+    pushSpaceId: string
 }

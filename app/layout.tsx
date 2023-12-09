@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={raleway.className}>
         <Providers>
           <AuthProvider>
-            <main className="h-full flex flex-col justify-between items-center bg-neutral-900">
+            <main className="min-h-screen h-full flex flex-col justify-between items-center bg-neutral-900">
               <Header />
               {children}
               <Footer />
