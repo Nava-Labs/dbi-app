@@ -54,6 +54,13 @@ We provide a secure tunnel for protocols to engage in direct communication with 
 #### Notification(for future development)
 Notifications play a critical role in expediting communication. This becomes particularly crucial when community members actively tag individuals from different organizations. Due to strict development timeline, we couldn't be able to implement this.
 
+## Lighthouse
+#### Secure Reported Case Handling
+Lighthouse also serves a critical role in securing reported hack cases through encryption and decryption measures. This approach guarantees that only authorized entities, namely the file owner and the designated organization, can access and view the sensitive information associated with reported incidents
+
+#### Web Content Storage
+DBI Foundation uses Lighthouse to get all the website content, providing a storage solution that is cost-effective, faster, and reliable.
+
 ## Getting Started
 
 First, run the development server:
