@@ -104,16 +104,23 @@ export default function SubmitReport(params: any) {
     ...uploadReportConfig,
   });
 
-  const upload = async () => {
-    await uploadEncryptedFile;
-    await uploadReport;
-  };
+  let tweet = encodeURIComponent(
+    "I've submitted a report on Decentralized Bureau of Investigation #DBI #ETHIndia"
+  );
 
   return (
     <div className="mt-4 space-y-4 lg:mt-1">
       <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
         <div className="group flex justify-between rounded-t-none border-b border-neutral-600 px-4 pb-[12px] pt-3 md:rounded-t-lg">
           <h4 className="flex items-center font-semibold">Submit a Report</h4>
+          <a
+            href={`https://twitter.com/intent/tweet?text=${tweet}`}
+            target="_blank"
+          >
+            <button className="text-base px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer">
+              Tweet
+            </button>
+          </a>
         </div>
 
         <div className="p-4 leading-5 sm:leading-6">
