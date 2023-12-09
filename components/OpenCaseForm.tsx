@@ -184,7 +184,7 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
           spaceDescription: description,
           listeners: [],
           spaceImage:"space image link",
-          speakers: [addr],
+          speakers: [],
           isPublic: true,
           signer: signer!,
           pgpPrivateKey: pgpDecryptedPvtKey, //decrypted private key
