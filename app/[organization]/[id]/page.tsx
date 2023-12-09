@@ -6,6 +6,7 @@ import { getWebsiteContent } from "@/shared/utils/storage/entityActions";
 import SubmitReport from "@/components/SubmitReport";
 import CustomPushChat from "@/components/CustomPushChat";
 import PushSpace from "@/components/PushSpace";
+import CaseFulfillButton from "@/components/button/CaseFulfillButton";
 
 export default async function RequestDetails(params: any) {
   const websiteContent = await getWebsiteContent();
@@ -133,6 +134,11 @@ export default async function RequestDetails(params: any) {
                           {caseData[0].bountyOffered / 100}%
                         </span>
                       </div>
+                      <CaseFulfillButton
+                        bountyContract={
+                          caseData[0].bountyContract as `0x${string}`
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -169,7 +175,6 @@ export default async function RequestDetails(params: any) {
             privateChatId={caseData[0].pushPrivateGroupId}
             hackerAddr={caseData[0].hackerAddr}
           />
-
         </div>
       )}
     </div>
