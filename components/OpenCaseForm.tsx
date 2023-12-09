@@ -188,7 +188,7 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
           isPublic: true,
           signer: signer!,
           pgpPrivateKey: pgpDecryptedPvtKey, //decrypted private key
-          scheduleAt: new Date("2023-07-15T14:48:00.000Z"),
+          scheduleAt: new Date("2024-07-15T14:48:00.000Z"),
           scheduleEnd: new Date("2024-07-15T15:48:00.000Z")
         });
         form.setValue("pushSpaceId", response.spaceId);
