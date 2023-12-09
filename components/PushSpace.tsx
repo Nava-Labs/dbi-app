@@ -80,10 +80,11 @@ type SpaceListener = {
 }
 
 function PushSpace(props: any) {
-  const { pushSpaceId } = props
-
+  const { pushSpaceId, user, accountAddr, signer} = props
+  
   const [listeningUsers, setListeningUsers] = useState<SpaceListener[]>([]);
   const [spaceDescription, setSpaceDescription] = useState("");
+  const [spaceName, setSpaceName] = useState("");
 
   useEffect(() => {
     async function getSpaceDetail() {
@@ -94,6 +95,7 @@ function PushSpace(props: any) {
       let listening = response.members;
       setListeningUsers(listening);
       setSpaceDescription(response.spaceDescription)
+      setSpaceName(response.spaceName)
     }
     getSpaceDetail()
   }, []);
@@ -110,15 +112,23 @@ function PushSpace(props: any) {
 
   const addListener = async ()=>{
     try {
-      // const response = await PushSDK.space.addListeners({
-      //   spaceId: pushSpaceId,
-      //   listeners: [
-          
-      //   ],
-      //   signer: signer,
-      //   pgpPrivateKey: pgpDecrpyptedPvtKey,
-      //   env: env as ENV,
-      // });
+      if (user && accountAddr){
+        const encrypted = (await user.info()).encryptedPrivateKey
+        const pgpDecryptedPvtKey = await PushSDK.chat.decryptPGPKey({
+          encryptedPGPPrivateKey: encrypted, 
+          signer: signer
+        });
+
+        const response = await PushSDK.space.addListeners({
+          spaceId: pushSpaceId,
+          listeners: [
+            accountAddr
+          ],
+          signer: signer,
+          pgpPrivateKey: pgpDecryptedPvtKey,
+        });
+      }
+      
     } catch (err) {
       console.log("error join space ", err)
     }
@@ -148,7 +158,7 @@ function PushSpace(props: any) {
 
         <div className="p-4 leading-5 sm:leading-6">
           <div className="flex flex-col">
-            <div className="text-lg font-medium">What really happened?</div>
+            <div className="text-lg font-medium">{spaceName}</div>
             <div className="flex space-x-2 items-center ">
               <div className="flex items-center text-sm text-neutral-400">
                 <MicrophoneIcon className="h-4 mr-1" />
