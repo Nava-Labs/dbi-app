@@ -1,6 +1,5 @@
 import lighthouse from '@lighthouse-web3/sdk'
 import { Organisation, Post, WebsiteContent } from './entityInterfaces';
-import fetch from 'node-fetch'; 
 
 interface IPNSDetails {
     ipnsName: string,
