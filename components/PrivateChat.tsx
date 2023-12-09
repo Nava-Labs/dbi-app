@@ -52,7 +52,7 @@ export default function PrivateChat(props: any) {
      }, [myTrigger])
 
      function formatGroupChats(groupChats: any, orgsAdmins: any) {
-          // groupChats = groupChats.reverse();
+          groupChats = groupChats.reverse();
           for (let i = 0; i < groupChats.length; i++) {
                let chatSender = groupChats[i].fromDID[0] == "e" ? formatDID(groupChats[i].fromDID).toLowerCase() : groupChats[i].fromDID; //depan nya ada e?
                groupChats[i].logoUrl = ""; //officer logo
@@ -60,12 +60,12 @@ export default function PrivateChat(props: any) {
                groupChats[i].fromDID = truncateEthAddress(
                     formatDID(groupChats[i].fromDID)
                );
-
+               chatSender = chatSender.toLowerCase()
                if (orgsAdmins[chatSender]) {
                     groupChats[i].fromDID =
                          groupChats[i].fromDID + " - " + orgsAdmins[chatSender] + " Admin";
                     groupChats[i].logoUrl = orgsAdmins[chatSender].logoUrl;
-               } else if (chatSender == hackerAddr) {
+               } else if (chatSender == hackerAddr.toLowerCase()) {
                     groupChats[i].fromDID = groupChats[i].fromDID + " - Hacker";
                } else {
                     groupChats[i].fromDID = groupChats[i].fromDID + " - Officer";
