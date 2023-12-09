@@ -12,6 +12,7 @@ import {
 import PushChat from "@/components/PushChat";
 // import PublicGroupChat from "@/components/PublicGroupChat";
 import { getWebsiteContent } from "@/shared/utils/storage/entityActions";
+import SubmitReport from "@/components/SubmitReport";
 
 export default async function RequestDetails(params: any) {
  const websiteContent = await getWebsiteContent();
@@ -153,7 +154,9 @@ export default async function RequestDetails(params: any) {
                  </div>
                </div>
              </div>
-
+             <SubmitReport
+                bountyContract={caseData[0].bountyContract as `0x${string}`}
+              />
            </div>
          </div>
        </div>
