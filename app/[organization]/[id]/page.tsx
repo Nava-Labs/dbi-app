@@ -165,9 +165,9 @@ export default async function RequestDetails(params: any) {
           <CustomPushChat
             groupChatId={caseData[0].pushPublicGroupId}
             organizations={websiteContent.organisations}
+            pushSpaceId={caseData[0].pushSpaceId}
           />
 
-          <PushSpace pushSpaceId={caseData[0].pushSpaceId} />
         </div>
       )}
     </div>

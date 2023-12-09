@@ -86,11 +86,42 @@ function PushSpace(props: any) {
   const [spaceDescription, setSpaceDescription] = useState("");
 
   useEffect(() => {
-    
+    async function getSpaceDetail() {
+
+      const response = await PushSDK.space.get({
+        spaceId: pushSpaceId
+      });
+      let listening = response.members;
+      setListeningUsers(listening);
+      setSpaceDescription(response.spaceDescription)
+    }
+    getSpaceDetail()
   }, []);
 
   const handleJoinSpace = async () => {
+    try {
+      const response = await PushSDK.space.approve({
+        senderAddress: pushSpaceId
+      });
+    } catch (err) {
+      console.log("error join space ", err)
+    }
+  }
 
+  const addListener = async ()=>{
+    try {
+      // const response = await PushSDK.space.addListeners({
+      //   spaceId: pushSpaceId,
+      //   listeners: [
+          
+      //   ],
+      //   signer: signer,
+      //   pgpPrivateKey: pgpDecrpyptedPvtKey,
+      //   env: env as ENV,
+      // });
+    } catch (err) {
+      console.log("error join space ", err)
+    }
   }
   return (
     <div className="w-full h-full mt-3">
@@ -108,7 +139,7 @@ function PushSpace(props: any) {
             </div>
           </div>
           <button
-            // onClick={handleJoinGroup}
+            onClick={handleJoinSpace}
             className="text-sm font-medium px-5 py-3 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle bg-inherit"
           >
             Join Space
@@ -125,7 +156,7 @@ function PushSpace(props: any) {
               </div>
               <div className="flex items-center text-sm text-neutral-400">
                 <UserGroupIcon className="h-4 mr-1" />
-                <div>12 listening</div>
+                <div>{setListeningUsers.length} listening</div>
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ import * as React from "react";
 import { Wallet, providers } from "ethers";
 import truncateEthAddress from "truncate-eth-address";
 import {getOrgsAdmin} from "@/shared/utils/organizations";
+import PushSpace from "./PushSpace";
 
 export function walletClientToSigner(walletClient: WalletClient) {
   const { account, chain, transport } = walletClient;
@@ -32,7 +33,7 @@ export function useEthersSigner({ chainId }: { chainId?: number } = {}) {
 }
 
 export default function CustomPushChat(props: any) {
-  const { groupChatId, organizations } = props;
+  const { groupChatId, organizations, pushSpaceId } = props;
   const [message, setMessage] = useState("");
   const [user, setUser] = useState<PushAPI>();
   const [groupChats, setGroupChats] = useState<any>();
@@ -277,6 +278,8 @@ export default function CustomPushChat(props: any) {
   };
 
   return (
+    <>
+    
     <div className="w-full h-full mt-3">
       <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
         <div className="group flex justify-between items-center rounded-t-none border-b border-neutral-600 px-4 pb-[12px] pt-3 md:rounded-t-lg">
@@ -347,5 +350,7 @@ export default function CustomPushChat(props: any) {
         </div>
       </div>
     </div>
+      <PushSpace pushSpaceId={pushSpaceId} />
+    </>
   );
 }
