@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Providers from "./providers";
+import AuthProvider from "./api/context/AuthProvider";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <Providers>
-          <main className="h-full flex flex-col justify-between items-center bg-neutral-900">
-            <Header />
-            {children}
-            <Footer />
-          </main>
+          <AuthProvider>
+            <main className="h-full flex flex-col justify-between items-center bg-neutral-900">
+              <Header />
+              {children}
+              <Footer />
+            </main>
+          </AuthProvider>
         </Providers>
       </body>
     </html>
