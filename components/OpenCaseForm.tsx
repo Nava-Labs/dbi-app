@@ -171,13 +171,13 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
           members: [caseHackerAddr],
         });
 
-        const encrypted = (await user.info()).encryptedPrivateKey
-        const pgpDecryptedPvtKey = await PushSDK.chat.decryptPGPKey({
-          encryptedPGPPrivateKey: encrypted, 
-          signer: signer
-        });
+        // const encrypted = (await user.info()).encryptedPrivateKey
+        // const pgpDecryptedPvtKey = await PushSDK.chat.decryptPGPKey({
+        //   encryptedPGPPrivateKey: encrypted, 
+        //   signer: signer
+        // });
         
-        let addr = walletClient?.account.address!;
+        // let addr = walletClient?.account.address!;
         // actual api
         // const response = await PushSDK.space.create({
         //   spaceName: caseTitle + " Space",
