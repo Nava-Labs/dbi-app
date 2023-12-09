@@ -213,24 +213,15 @@ function PolygonIDVerifier({
                         </p>
                       )}
                     </div>
-                    <div className="flex mt-2">
-                      <button
-                        className="text-xs font-medium px-5 py-3 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle bg-inherit"
-                        onClick={() =>
-                          openInNewTab(linkDownloadPolygonIDWalletApp)
-                        }
-                      >
-                        Download the Polygon ID Wallet App{" "}
-                        <ExternalLinkIcon marginLeft={2} />
-                      </button>
-                      <button
-                        className="text-xs font-medium px-5 py-3 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle bg-inherit"
-                        onClick={() => openInNewTab(issuerOrHowToLink)}
-                      >
-                        Get a {credentialType} VC{" "}
-                        <ExternalLinkIcon marginLeft={2} />
-                      </button>
-                    </div>
+                    <button
+                      className="text-xs font-medium px-5 py-3 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle bg-inherit"
+                      onClick={() =>
+                        openInNewTab(linkDownloadPolygonIDWalletApp)
+                      }
+                    >
+                      Download the Polygon ID Wallet App{" "}
+                      <ExternalLinkIcon marginLeft={2} />
+                    </button>
                   </Dialog.Panel>
                 )}
               </Transition.Child>
