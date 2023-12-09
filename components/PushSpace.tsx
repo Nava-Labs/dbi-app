@@ -1,8 +1,10 @@
 "use state";
 
+import { useEffect, useState } from "react";
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { MicrophoneIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import * as PushSDK from "@pushprotocol/restapi";
 
 const speaker = [
   {
@@ -70,7 +72,67 @@ const listener = [
   },
 ];
 
-function PushSpace() {
+type SpaceListener = {
+  wallet: string;
+  publicKey: string;
+  isSpeaker: boolean;
+  image: string;
+}
+
+function PushSpace(props: any) {
+  const { pushSpaceId, user, accountAddr, signer} = props
+  
+  const [listeningUsers, setListeningUsers] = useState<SpaceListener[]>([]);
+  const [spaceDescription, setSpaceDescription] = useState("");
+  const [spaceName, setSpaceName] = useState("");
+
+  useEffect(() => {
+    async function getSpaceDetail() {
+
+      const response = await PushSDK.space.get({
+        spaceId: pushSpaceId
+      });
+      let listening = response.members;
+      setListeningUsers(listening);
+      setSpaceDescription(response.spaceDescription)
+      setSpaceName(response.spaceName)
+    }
+    getSpaceDetail()
+  }, []);
+
+  const handleJoinSpace = async () => {
+    try {
+      const response = await PushSDK.space.approve({
+        senderAddress: pushSpaceId
+      });
+    } catch (err) {
+      console.log("error join space ", err)
+    }
+  }
+
+  const addListener = async ()=>{
+    try {
+      if (user && accountAddr){
+        const encrypted = (await user.info()).encryptedPrivateKey
+        const pgpDecryptedPvtKey = await PushSDK.chat.decryptPGPKey({
+          encryptedPGPPrivateKey: encrypted, 
+          signer: signer
+        });
+
+        const response = await PushSDK.space.addListeners({
+          spaceId: pushSpaceId,
+          listeners: [
+            accountAddr
+          ],
+          signer: signer,
+          pgpPrivateKey: pgpDecryptedPvtKey,
+        });
+      }
+      
+    } catch (err) {
+      console.log("error join space ", err)
+    }
+  }
   return (
     <div className="w-full h-full mt-3">
       <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
@@ -87,7 +149,7 @@ function PushSpace() {
             </div>
           </div>
           <button
-            // onClick={handleJoinGroup}
+            onClick={handleJoinSpace}
             className="text-sm font-medium px-5 py-3 border rounded-full border-neutral-600 hover:border-neutral-300 align-middle bg-inherit"
           >
             Join Space
@@ -96,7 +158,7 @@ function PushSpace() {
 
         <div className="p-4 leading-5 sm:leading-6">
           <div className="flex flex-col">
-            <div className="text-lg font-medium">What really happened?</div>
+            <div className="text-lg font-medium">{spaceName}</div>
             <div className="flex space-x-2 items-center ">
               <div className="flex items-center text-sm text-neutral-400">
                 <MicrophoneIcon className="h-4 mr-1" />
@@ -104,7 +166,7 @@ function PushSpace() {
               </div>
               <div className="flex items-center text-sm text-neutral-400">
                 <UserGroupIcon className="h-4 mr-1" />
-                <div>12 listening</div>
+                <div>{setListeningUsers.length} listening</div>
               </div>
             </div>
           </div>

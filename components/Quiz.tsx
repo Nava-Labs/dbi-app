@@ -88,6 +88,7 @@ export default function Quiz() {
     );
     setSignature(userSignature);
   };
+  console.log("signature ", signature)
 
   const { data } = useContractRead({
     address: DBI_OFFICER as `0x${string}`,

@@ -11,16 +11,19 @@ import {
   usePrepareContractWrite,
 } from "wagmi";
 import { BOUNTY_CONTACT_ABI } from "@/lib/abis/bounty-contract.abi";
+import { getOrgsAdmin } from "@/shared/utils/organizations";
 
 const apiKey = process.env.NEXT_PUBLIC_LIGHTHOUSE_API_KEY!;
 
 export default function SubmitReport(params: any) {
+  const { organizations } = params;
   const { address } = useAccount();
 
   const [file, setFile] = useState(null);
   const [hash, setHash] = useState("");
   const [signature, setSignature] = useState("");
   const [accountNonce, setAccountNonce] = useState<bigint>();
+  const [reportedAddrs, setReportedAddrs] = useState<string>();
 
   const { data } = useContractRead({
     address: params.bountyContract as `0x${string}`,
@@ -31,6 +34,16 @@ export default function SubmitReport(params: any) {
       setAccountNonce(result);
     },
   });
+
+  // const {  } = useContractRead({
+  //   address: params.bountyContract as `0x${string}`,
+  //   abi: BOUNTY_CONTACT_ABI,
+  //   functionName: "getAllReports",
+  //   args: [],
+  //   onSuccess(result) {
+  //     setReportedAddrs(result);
+  //   },
+  // }); //waiitng for abi
 
   // Function to upload the encrypted file
   const uploadEncryptedFile = async () => {
