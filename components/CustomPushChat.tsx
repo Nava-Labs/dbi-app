@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { useEffect, useState } from "react";
@@ -109,7 +110,8 @@ export default function CustomPushChat(props: any) {
             content: message,
           });
           let tempGroupChats = await user.chat.history(groupChatId);
-          tempGroupChats = formatGroupChats(tempGroupChats);
+          let tempOrgsAdmins: any = getOrgsAdmin(organizations);
+          tempGroupChats = formatGroupChats(tempGroupChats, tempOrgsAdmins);
           setGroupChats(tempGroupChats);
         } catch (err) {
           console.log(err);

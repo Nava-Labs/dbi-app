@@ -45,7 +45,7 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
   const router = useRouter();
   const { address } = useAccount();
   const [user, setUser] = useState<PushAPI>();
-  const [signer, setSigner] = useState<PushAPIPushSDK.SignerType>();
+  const [signer, setSigner] = useState<PushSDK.SignerType>();
   const { chain } = useNetwork();
   const { DBI_CONTRACT, DBI_OFFICER, DBI_DEPUTY } = useConfig(chain!);
 
@@ -56,7 +56,7 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
     }
     async function getAccount(walletClient: WalletClient) {
       let signer = walletClientToSigner(walletClient);
-      setSigner(setSigner);
+      setSigner(signer);
       const userPush = await PushAPI.initialize(signer);
       setUser(userPush);
     }
