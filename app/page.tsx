@@ -1,5 +1,6 @@
 "use client";
 
+import CreateOrganizationDialog from "@/components/CreateOrganizationDialog";
 import SearchForm from "@/components/SearchForm";
 import { getWebsiteContent } from "@/shared/utils/storage/entityActions";
 import { useState, useEffect } from "react";
@@ -26,9 +27,10 @@ export default function Home() {
     <div className="h-full mx-auto px-40 py-10">
       <div className="flex justify-between items-center pb-5">
         <SearchForm />
+        <CreateOrganizationDialog websiteContent={websiteContent} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {websiteContent.organisations.map((item: any, index: any) => (
+        {websiteContent?.organisations.map((item: any, index: any) => (
           <div
             key={index}
             className="flex flex-col items-center justify-center h-64 w-[190px] transition-all p-2 border-[1px] rounded-xl border-neutral-600 hover:border-neutral-400 cursor-pointer text-base shadow-md shadow-neutral-700"
