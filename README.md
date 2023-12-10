@@ -47,12 +47,13 @@ In order to authenticate and verify the legitimacy of an organization or protoco
 
 dbi-organization-verifier: https://dbi-organization-verifier.onrender.com
 
-By leveraging this verifier VC, we uphold a secure and reliable means of confirming the identity and validity of organizations and protocols associated with our system.
+By leveraging this verifier VC, we uphold a secure and reliable means of confirming the identity and validity of organizations and protocols associated with our system. For more details please click [here](https://github.com/Nava-Labs/dbi-organization-verifier)
 
 ## Push Protocol
 During critical hours post-hacks are very crucial. Communication plays huge role. DBI Foundation implement 3 features of push protocol to connect protocol, hackers and community
 #### Public forum(NFT Gated Group Chat)
 All officer NFT holders have the privilege to communicate with each other, talking about the case. Potentialy help the protocol/organization to fight the hacker back. This feature allows for efficient tagging of organization owners, promoting clarity and comprehensive collaboration in the collective effort to combat hackers and unveil their identities.
+PS: Officer NFT is given to people who pass our simple cyber security quizes. This is to enhance the awareness and educate people.
 #### Spaces
 Empower every DAO member to host a space and express their thoughts on a case. This enhances transparency within the community, fostering collaboration and collective insights to address security incidents effectively.
 #### Private chat with hackers
@@ -82,3 +83,8 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### All DBI repository
+- DBI App: https://github.com/Nava-Labs/dbi-app
+- DBI Contracts: https://github.com/Nava-Labs/dbi-contracts
+- DBI Verifier Node: https://github.com/Nava-Labs/dbi-organization-verifier
