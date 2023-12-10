@@ -47,7 +47,7 @@ To optimize outcomes, the DBI Foundation has deployed a dedicated Issuer Node fo
 #### Verifier node
 In order to authenticate and verify the legitimacy of an organization or protocol, we have deployed a dedicated Verifier Verifiable Credential (VC) system. This verification process ensures the credibility and authenticity of the entities in question. The verifier VC is hosted at the following address:
 
-dbi-organization-verifier: https://dbi-organization-verifier.onrender.com
+dbi-organization-verifier: https://dbi-organization-credentials.onrender.com
 
 By leveraging this verifier VC, we uphold a secure and reliable means of confirming the identity and validity of organizations and protocols associated with our system. For more details please click [here](https://github.com/Nava-Labs/dbi-organization-verifier)
 
