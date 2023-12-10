@@ -1,5 +1,7 @@
 The Decentralized Bureau of Investigation (**DBI**) is a community-based platform aimed at enhancing communication during the crucial initial hours after a security breach or rug pull. It connects affected protocols, hackers, and the community for effective collaboration.
 
+We're inspired to build this platform based on our own bitter experience on losing funds due to exploits/hacks. We can't participate much in the post-hack, let alone contributing in a meaningful way. Not all protocols publish a post-mortem on their incident. With DBI, we hope we can solve all of these problems.
+
 Website: http://3.133.87.6:8080/
 
 ### Key Features:
