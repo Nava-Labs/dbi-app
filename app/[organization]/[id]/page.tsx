@@ -108,14 +108,17 @@ export default async function RequestDetails(params: any) {
                           {caseData[0].stolenTokenAddress.map((item, index) => (
                             <span key={index} className="font-medium">
                               {(item ===
-                                "0xF03274e634997f108786339cc9679498D323e214" &&
+                                "0x64A868E48c2fd9cE7bb436def15723658612AEC0" &&
                                 "$UNI") ||
                                 (item ===
-                                  "0xC769E60549E04ceaE55410780f6733eBa0747a33" &&
+                                  "0x4344d04691D0cB32039dd78405D2894fFb6B46A9" &&
                                   "$1INCH") ||
                                 (item ===
-                                  "0xcd65d10926CeA6c0de2F20aa2a175968EB00Bb6b" &&
-                                  "$YFI")}
+                                  "0xC343040c675c54eC08f2B94156Fb79e50478C769" &&
+                                  "$YFI") ||
+                                (item ===
+                                  "0x03d351F47B896ed5302F7DeF1E56FDF9b69506fE" &&
+                                  "$USDT")}
                             </span>
                           ))}
                         </div>

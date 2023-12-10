@@ -358,7 +358,7 @@ export default function CustomPushChat(props: any) {
         </div>
       </div>
     </div>
-      {/* <PushSpace user={user} signer={signer} accountAddr={walletClient?.account.address!} pushSpaceId={pushSpaceId} /> */}
+      <PushSpace user={user} signer={signer} accountAddr={walletClient?.account.address!} pushSpaceId={pushSpaceId} />
       {
         // isHacker? //if it is hacker show private chat
         // <PrivateChat privateChatId ={"5c48b4d150d983889e0b5a55c13ab57c1762ee214eaf24cedaf7521fad6d0370"} orgsAdmins={orgsAdmins} hackerAddr={hackerAddr} organizations={organizations} user={user} signer={signer} accountAddr={walletClient?.account.address!}/>

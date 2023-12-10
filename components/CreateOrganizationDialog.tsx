@@ -108,19 +108,20 @@ export default function CreateOrganizationDialog({ websiteContent }: any) {
       ...addOrganizationConfig,
     });
 
-  const fillForm = () => {
-    form.setValue("name", "Uniswap");
-    form.setValue(
-      "logoUrl",
-      "https://cdn.stamp.fyi/space/uniswapgovernance.eth?s=96&cb=7b5f087c16a60022"
-    );
-    form.setValue(
-      "treasuryAddress",
-      "0xeD7B73A82dB4D2406c0a25c55122fc317f2e6Afd"
-    );
-    form.setValue("tokenAddress", "0xF03274e634997f108786339cc9679498D323e214");
-    form.setValue("minRequired", 100);
-  };
+    const fillForm = () => {
+      form.setValue("name", "1inch");
+      form.setValue("chainId", 80001);
+      form.setValue(
+        "logoUrl",
+        "https://cdn.stamp.fyi/space/1inch.eth?s=96&cb=d3a5b0a6de310910"
+      );
+      form.setValue(
+        "treasuryAddress",
+        "0x070E00B90bE22f409B0aE0719A3511Ae6DbFd3Cc" //Account 1a
+      );
+      form.setValue("tokenAddress", "0x4344d04691D0cB32039dd78405D2894fFb6B46A9");
+      form.setValue("minRequired", 100);
+    };
 
   return (
     <Form {...form}>

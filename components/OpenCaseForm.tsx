@@ -227,11 +227,11 @@ export default function OpenCaseForm({ websiteContent, orgName }: any) {
       "Summary: On April 13, 2023, This protocol on the Ethereum chain was attacked due to a misconfiguration in their vault. The attackers exploited this vulnerability and stole approximately $11.54 million."
     );
     form.setValue("stolenTokenAddress", [
-      "0xF03274e634997f108786339cc9679498D323e214",
-      "0xC769E60549E04ceaE55410780f6733eBa0747a33",
+      "0x64A868E48c2fd9cE7bb436def15723658612AEC0",
+      "0x4344d04691D0cB32039dd78405D2894fFb6B46A9",
     ]);
     form.setValue("stolenAmount", ["5", "10"]);
-    form.setValue("caseDeadline", 1701873236);
+    form.setValue("caseDeadline", 1703873236);
     form.setValue("bountyOffered", 500);
     form.setValue("caseCreator", address as `0x${string}`);
     form.setValue("hackerAddr", "0x2d7e2DF65C1B06fa60FAf2a7D4C260738BB553D9");
