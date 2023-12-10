@@ -183,7 +183,7 @@ export default function SubmitReport(params: any) {
           </div>
         </div>
       </div>
-      <div className="mt-4 space-y-4 lg:mt-1">
+      {/* <div className="mt-4 space-y-4 lg:mt-1">
         <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
           <div className="group flex justify-between rounded-t-none border-b border-neutral-600 px-4 pb-[12px] pt-3 md:rounded-t-lg">
             <h4 className="flex items-center font-semibold">
@@ -199,7 +199,7 @@ export default function SubmitReport(params: any) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
