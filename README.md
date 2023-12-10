@@ -32,7 +32,7 @@ Website: http://3.133.87.6:8080/
 ![what we want to achieve](https://drive.google.com/uc?id=1XthoN1LTFMeLNUMZYA1__NfdzXh0CxW5)
 ![what we want to achieve](https://drive.google.com/uc?id=1n3EthWbHg3fVdRna3Fd8V0yNF-WgIszj)
 
-## Polygon id
+## Polygon
 #### Issuer node
 We use polygon id to verify the identity of the creator of the organization or protocol. This verification process ensures that the creator has the authority to establish essential parameters, including:
 - Treasury address
@@ -50,6 +50,15 @@ In order to authenticate and verify the legitimacy of an organization or protoco
 dbi-organization-verifier: https://dbi-organization-verifier.onrender.com
 
 By leveraging this verifier VC, we uphold a secure and reliable means of confirming the identity and validity of organizations and protocols associated with our system. For more details please click [here](https://github.com/Nava-Labs/dbi-organization-verifier)
+
+#### DBI Officer and Deputy POAP
+To foster meaningful contributions and safeguard against automated threats such as bots and Sybil attacks, individuals interested in contributing to our cause are required to successfully complete our crypto quizzes focused on cybercrime. This dual-purpose approach not only educates participants but also ensures the integrity of our community engagement. Below are the NFT contracts associated with these roles:
+
+DBI Officer NFT Contract: https://mumbai.polygonscan.com/address/0xfD89ea46B8b403a8cAbA933A19165228B387a27f
+
+DBI Deputy NFT Contract: https://mumbai.polygonscan.com/address/0xf1c69Db8c37B09AA0EAf1247AB1079d3b29Bb575
+
+These NFT contracts serve as tangible proof of achievement and commitment within our community, reinforcing the importance of knowledge and expertise in combating cyber threats.
 
 ## Push Protocol
 During critical hours post-hacks are very crucial. Communication plays huge role. DBI Foundation implement 3 features of push protocol to connect protocol, hackers and community
