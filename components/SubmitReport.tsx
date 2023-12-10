@@ -40,26 +40,27 @@ export default function SubmitReport(params: any) {
     abi: BOUNTY_CONTACT_ABI,
     functionName: "getAllReports",
     onSuccess(result) {
-      console.log("result ", result)
+      console.log("result ", result);
       matchWithOrgs(result);
       // setReportedAddrs(result);
     },
   }); //waiitng for abi
 
-  function matchWithOrgs(data:any){ //get all orgs that submitted
+  function matchWithOrgs(data: any) {
+    //get all orgs that submitted
     let orgsAdmins = getOrgsAdmin(organizations);
-    let orgs = []
-    for(let i=0;i<data.length;i++){
+    let orgs = [];
+    for (let i = 0; i < data.length; i++) {
       const userAddr = data[i].user.toLowerCase();
-      if (orgsAdmins[userAddr]) orgs.push(orgsAdmins[userAddr]) //if the userAddr is one of the orgs owner
+      if (orgsAdmins[userAddr]) orgs.push(orgsAdmins[userAddr]); //if the userAddr is one of the orgs owner
     }
-    console.log("this is the orgs", orgs)
+    console.log("this is the orgs", orgs);
     setListOrgsReported(orgs);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     //set something...?
-  },[listOrgsReported])
+  }, [listOrgsReported]);
 
   // Function to upload the encrypted file
   const uploadEncryptedFile = async () => {
@@ -138,48 +139,67 @@ export default function SubmitReport(params: any) {
   );
 
   return (
-    <div className="mt-4 space-y-4 lg:mt-1">
-      <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
-        <div className="group flex justify-between rounded-t-none border-b border-neutral-600 px-4 pb-[12px] pt-3 md:rounded-t-lg">
-          <h4 className="flex items-center font-semibold">Submit a Report</h4>
-          <a
-            href={`https://twitter.com/intent/tweet?text=${tweet}`}
-            target="_blank"
-          >
-            <button className="text-base px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer">
-              Tweet
-            </button>
-          </a>
-        </div>
+    <>
+      <div className="mt-4 space-y-4 lg:mt-1">
+        <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
+          <div className="group flex justify-between rounded-t-none border-b border-neutral-600 px-4 pb-[12px] pt-3 md:rounded-t-lg">
+            <h4 className="flex items-center font-semibold">Submit a Report</h4>
+            <a
+              href={`https://twitter.com/intent/tweet?text=${tweet}`}
+              target="_blank"
+            >
+              <button className="text-base px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer">
+                Tweet
+              </button>
+            </a>
+          </div>
 
-        <div className="p-4 leading-5 sm:leading-6">
-          <div className="flex flex-col">
-            <input type="file" onChange={handleFileChange} />
-            <div className="flex space-x-1">
-              <button
-                className="text-base mt-4 px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer"
-                onClick={uploadEncryptedFile}
-                disabled={!file}
-              >
-                Upload (IPFS)
-              </button>
-              <button
-                className="text-base mt-4 px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer"
-                onClick={() => uploadReport?.()}
-              >
-                Upload (Smart Contract)
-              </button>
-            </div>
-            {/* <button
+          <div className="p-4 leading-5 sm:leading-6">
+            <div className="flex flex-col">
+              <input type="file" onChange={handleFileChange} />
+              <div className="flex space-x-1">
+                <button
+                  className="text-base mt-4 px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer"
+                  onClick={uploadEncryptedFile}
+                  disabled={!file}
+                >
+                  Upload (IPFS)
+                </button>
+                <button
+                  className="text-base mt-4 px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer"
+                  onClick={() => uploadReport?.()}
+                >
+                  Upload (Smart Contract)
+                </button>
+              </div>
+              {/* <button
               className="text-base mt-4 px-3 py-1 w-full font-medium border rounded-full border-neutral-600 hover:border-neutral-300 align-middle cursor-pointer"
               onClick={upload}
               disabled={!file}
             >
               Upload
             </button> */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div className="mt-4 space-y-4 lg:mt-1">
+        <div className="border-y border-neutral-600 text-base md:rounded-xl md:border">
+          <div className="group flex justify-between rounded-t-none border-b border-neutral-600 px-4 pb-[12px] pt-3 md:rounded-t-lg">
+            <h4 className="flex items-center font-semibold">
+              Report Submitter
+            </h4>
+          </div>
+
+          <div className="p-4 leading-5 sm:leading-6">
+            <div className="flex flex-col">
+              {listOrgsReported.map((item: any, index: any) => (
+                <div key={index}>- {item}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
