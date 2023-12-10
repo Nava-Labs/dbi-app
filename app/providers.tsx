@@ -1,7 +1,13 @@
 "use client";
 
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
-import { polygonMumbai } from "viem/chains";
+import {
+  arbitrumGoerli,
+  baseGoerli,
+  mantleTestnet,
+  polygonMumbai,
+  scrollSepolia,
+} from "viem/chains";
 import { WagmiConfig, createConfig } from "wagmi";
 
 const config = createConfig(
@@ -9,7 +15,13 @@ const config = createConfig(
     alchemyId: "",
     walletConnectProjectId: "",
     appName: "Decentralized Bureau of Investigation",
-    chains: [polygonMumbai],
+    chains: [
+      polygonMumbai,
+      scrollSepolia,
+      arbitrumGoerli,
+      mantleTestnet,
+      baseGoerli,
+    ],
   })
 );
 
